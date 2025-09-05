@@ -4,7 +4,7 @@ import sqlite3
 import os
 from datetime import datetime
 app=Flask(__name__)
-CORS(app)
+CORS(app,origins=['*'])
 
 app.config['SECRET_KEY']='ITS_ME_HERE@COOL-BUDDY'
 app.config['UPLOADER'] = os.path.join(app.root_path, 'uploads')
