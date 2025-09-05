@@ -2,7 +2,7 @@ from flask import*
 from flask_cors import CORS
 import sqlite3
 import os
-from datetime import datetim
+from datetime import datetime
 app=Flask(__name__)
 CORS(app)
 
