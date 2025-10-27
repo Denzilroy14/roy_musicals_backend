@@ -60,7 +60,7 @@ def admin():
             'video_url':f'http://localhost:5000/uploads/{data[5]}',
             'appoinment_date':data[7],
             'appoinment_time':data[6],
-            'appoinment_booked_on':data[8]
+            'appoinment_booked_date':data[8]
         })
     return jsonify(user_list)
 @app.route('/uploads/<filename>')
