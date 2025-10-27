@@ -67,15 +67,16 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOADER'],filename)
 
 
-con=sqlite3.connect('database.db')
-cur=con.cursor()
-#ows=cur.execute('PRAGMA table_info(customer)')
+#con=sqlite3.connect('database.db')
+#cur=con.cursor()
+#rows=cur.execute('PRAGMA table_info(customer)')
 #for row in rows:
  #   print(row)
 #rows=cur.execute('SELECT appoinment_date,appoinment_time FROM customer').fetchall()
 #print(rows)
-#cur.execute('ALTER TABLE customer ADD COLUMN appoinment_date TEXT')
+#cur.execute('ALTER TABLE customer ADD COLUMN booked_date TEXT')
 #con.commit()
+#print('column added')
 
 
 if __name__=='__main__':
