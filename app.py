@@ -39,7 +39,8 @@ def appoinment():
     issue_video.save(filepath)
     con=sqlite3.connect(DATABASE)
     cur=con.cursor()
-    cur.execute('INSERT INTO customer(customername,customerphone,customeremail,instrument,brand_model,issue_video,appoinment_date,appoinment_time) VALUES(?,?,?,?,?,?,?,?)',(customername,customerphone,customeremail,instrument,brand_model,filename,date,time))
+    booked_date=datetime.now().strftime("%d-%m-%Y")
+    cur.execute('INSERT INTO customer(customername,customerphone,customeremail,instrument,brand_model,issue_video,appoinment_date,appoinment_time,booked_date) VALUES(?,?,?,?,?,?,?,?,?)',(customername,customerphone,customeremail,instrument,brand_model,filename,date,time,booked_date))
     con.commit()
     return jsonify({'message':'Appoinment booked successfully!'})
 
@@ -48,7 +49,6 @@ def admin():
     con=sqlite3.connect(DATABASE)
     curr=con.cursor()
     DATA=curr.execute('SELECT * FROM customer').fetchall()
-
     user_list=[]
     for data in DATA:
         user_list.append({
@@ -59,7 +59,8 @@ def admin():
             'brand_model':data[4],
             'video_url':f'http://localhost:5000/uploads/{data[5]}',
             'appoinment_date':data[7],
-            'appoinment_time':data[6]
+            'appoinment_time':data[6],
+            'appoinment_booked_on':data[8]
         })
     return jsonify(user_list)
 @app.route('/uploads/<filename>')
@@ -76,7 +77,7 @@ def uploaded_file(filename):
 #print(rows)
 #cur.execute('ALTER TABLE customer ADD COLUMN booked_date TEXT')
 #con.commit()
-#print('column added')
+#print('added successfully')
 
 
 if __name__=='__main__':
